@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dao.IStudentDao">
+
+    <!---->
+    <insert id="insertStudentAutoId" useGeneratedKeys="true" keyProperty="id">
+        insert into student(name) values(#{name});
+    </insert>
+
+
+    <!--连接查询-->
+    <resultMap id="StudentConnectionWithTeacher" type="Student">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="t_id" property="teacher.t_id"/>
+        <result column="t_name" property="teacher.t_name"/>
+    </resultMap>
+
+    <select id="findStudentByConnectionWithTeacherId" resultMap="StudentConnectionWithTeacher" >
+        select id,name,student.t_id,t_name from student inner join teacher where student.t_id = teacher.t_id and student.t_id = #{id};
+    </select>
+
+
+</mapper>
+

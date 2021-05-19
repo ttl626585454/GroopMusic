@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dao.IMusicDao">
+
+    <!--findMusicById方法-->
+    <select id="findMusicById" resultType="Bean.Music">
+        select * from music where musicId =#{musicId}
+    </select>
+<!--通过音乐名字查找音乐-->
+    <select id="findMusicByName" resultType="Bean.Music">
+        select * from music where musicName =#{musicName}
+    </select>
+<!--通过歌手查找音乐-->
+    <select id="findMusicBySingerName" resultType="Bean.Music">
+        select * from music where singerName = #{singerName}
+    </select>
+<!--    查找所有音乐-->
+    <select id="findAllMusic" resultType="Bean.Music">
+        select  * from music
+    </select>
+    <!--插入音乐-->
+    <insert id="insertMusic" parameterType="Bean.Music">
+        insert into user values(#{musicId},#{musicName},#{singerName})
+    </insert>
+
+
+
+
+</mapper>
